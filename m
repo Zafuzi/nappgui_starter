@@ -8,21 +8,21 @@ case "${unameOut}" in
     MINGW*)     machine=MinGw;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
-echo "\nRunning on: " ${machine}
+echo -e "\n- - - - - - - - - - Running on: $machine - - - - - - - - - -\n"
 
-flags = "Unix Makefiles" # linux
+flags="Unix Makefiles" # linux
 
-if machine == "Mac"; then
-    flags = "XCode";
-elif machine == "Cygwin"; then
-    flags = "Visual Studio 17 2022"
-elif machine == "MinGw"; then
-    flags = "Visual Studio 17 2022"
+if "$machine" == "Mac"; then
+    flags="XCode";
+elif "$machine" == "Cygwin"; then
+    flags="Visual Studio 17 2022"
+elif "$machine" == "MinGw"; then
+    flags="Visual Studio 17 2022"
 fi
 
 mkdir -p build;
 cd build;
-if cmake -G "Unix Makefiles" ../src; then
+if cmake -G "$flags" ../src; then
     cd hello;
     if make; then
         ./Debug/Hello
