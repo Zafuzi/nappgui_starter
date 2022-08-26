@@ -1,0 +1,11 @@
+on: push
+jobs:
+  gcc-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Get CMake
+      uses: symbitic/install-cmake@master
+
+    - name: Build Ubuntu
+      run: sh ./m
