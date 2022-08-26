@@ -8,4 +8,4 @@ jobs:
       uses: symbitic/install-cmake@master
 
     - name: Build Ubuntu
-      run: ${PWD}/m
+      run: ${PWD}/m.sh
