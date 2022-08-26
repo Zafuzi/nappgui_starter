@@ -20,5 +20,5 @@ jobs:
 
     - name: Build Ubuntu
       run: |
-        cd build; 
+        cd ${PWD}/build; 
         cmake -G "Unix Makefiles" ../src;
