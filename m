@@ -41,6 +41,9 @@ if cmake -G "$flags" ../src; then
     fi
 
     if [ "$machine" = "MacOS" ]; then
-        open NAppGUI.xcodeproj/
+		if xcodebuild; then
+			cd hello;
+			open ./Debug/Hello.app;
+		fi
     fi
 fi
