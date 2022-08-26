@@ -20,5 +20,6 @@ jobs:
 
     - name: Build Ubuntu
       run: |
+        mkdir -p ${PWD}/build;
         cd ${PWD}/build; 
         cmake -G "Unix Makefiles" ../src;
