@@ -34,7 +34,13 @@ mkdir -p build;
 cd build;
 if cmake -G "$flags" ../src; then
     cd hello;
-    if make; then
-        ./Debug/Hello
+    if [ "$machine" = "Linux" ]; then
+        if make; then
+            ./Debug/Hello
+        fi
+    fi
+
+    if [ "$machine" = "Mac" ]; then
+        open NAppGUI.xcodeproj/
     fi
 fi
