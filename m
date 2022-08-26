@@ -3,9 +3,10 @@
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=Linux;;
-    Darwin*)    machine=Mac;;
-    CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
+    Darwin*)    machine=MacOS;;
+    CYGWIN*)    machine=Windows;;
+    MINGW*)     machine=Windows;;
+    MSYS_NT*)   machine=Windows;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
@@ -16,31 +17,30 @@ flags=""
 if [ "$machine" = "Linux" ]; then
     flags="Unix Makefiles"
 
-elif [ "$machine" = "Mac" ]; then
+elif [ "$machine" = "MacOS" ]; then
     flags="Xcode";
 
-elif [ "$machine" = "Cygwin" ]; then
-    flags="Visual Studio 17 2022"
-
-elif [ "$machine" = "MinGw" ]; then
-    flags="Visual Studio 17 2022"
+elif [ "$machine" = "Windows" ]; then
+    echo -e "\nPlease use m.bat\n"
+    exit 0;
 
 else
     echo -e "\nMachine architecture not supported\n"
     exit 0;
 fi
 
+rm -rf ./build;
 mkdir -p build;
 cd build;
 if cmake -G "$flags" ../src; then
-    cd hello;
     if [ "$machine" = "Linux" ]; then
+        cd hello;
         if make; then
             ./Debug/Hello
         fi
     fi
 
-    if [ "$machine" = "Mac" ]; then
+    if [ "$machine" = "MacOS" ]; then
         open NAppGUI.xcodeproj/
     fi
 fi
