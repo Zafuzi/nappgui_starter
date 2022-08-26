@@ -7,5 +7,18 @@ jobs:
     - name: Get CMake
       uses: symbitic/install-cmake@master
 
+    - name: Install Ubuntu Dependencies
+      run: |
+        sudo apt-get install gcc
+        sudo apt-get install g++
+        sudo apt-get install git
+        sudo apt-get install make
+        sudo apt-get install cmake
+        sudo apt-get install libgtk-3-dev
+        sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+        sudo apt-get install libcurl4-openssl-dev
+
     - name: Build Ubuntu
-      run: ${PWD}/m.sh
+      run: |
+        cd build; 
+        cmake -G "Unix Makefiles" ../src;
