@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  gcc-snapshot:
+  build_on_ubuntu:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -28,7 +28,7 @@ jobs:
       run: |
         mkdir -p ${PWD}/build;
         cd ${PWD}/build; 
-        cmake -G "Unix Makefiles" ${PWD}/src;
+        cmake -G "Unix Makefiles" ${PWD}/../src;
       
     - name: "Publish GitHub Action"
       uses: tgymnich/publish-github-action@v1
