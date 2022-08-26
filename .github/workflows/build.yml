@@ -1,8 +1,14 @@
-on: push
+on: 
+  push:
+    branches:
+      - master
+      - main
+
 jobs:
   gcc-snapshot:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
 
     - name: Get CMake
       uses: symbitic/install-cmake@master
@@ -23,3 +29,8 @@ jobs:
         mkdir -p ${PWD}/build;
         cd ${PWD}/build; 
         cmake -G "Unix Makefiles" ${pwd}/src;
+      
+    - name: "Publish GitHub Action"
+    - uses: tgymnich/publish-github-action@v1
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
