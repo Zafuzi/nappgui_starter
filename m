@@ -17,7 +17,7 @@ if [ "$machine" = "Linux" ]; then
     flags="Unix Makefiles"
 
 elif [ "$machine" = "Mac" ]; then
-    flags="XCode";
+    flags="Xcode";
 
 elif [ "$machine" = "Cygwin" ]; then
     flags="Visual Studio 17 2022"
